@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return randomIds;
     }
 
-    const countCards = 18;
+    const countCards = 10;
 
     let originalCards = generateRandomIds(countCards, 1, 1010).map(id => ({ id }));
     let doubledCards = [...originalCards, ...originalCards];
