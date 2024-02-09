@@ -1,7 +1,7 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
-  <title>Poke Game</title>
+  <title>PokePlay Zone</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crete+Round:ital@0;1&family=Gelasio:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Luckiest+Guy&family=Passion+One:wght@400;700;900&family=Rubik+Doodle+Shadow&family=Titan+One&display=swap" rel="stylesheet">
@@ -15,15 +15,16 @@
     <div class="form-wrapper sign-in">
         <form action="">
             <h2>What's your nickname?</h2>
-            <div class="input-group" >
-                <input id="nickname" type="text" required>
+            <div class="input-group">
+                <input id="nickname" type="text" autocomplete="off" required>
                 <label>Nickname</label>
             </div>
             <div class="remember">
                 <label><input type="checkbox">Remember me</label>
             </div>
             <div>
-                <button class="saveBtn" type="submit">Save</button>
+                <button class="saveBtn" type="button">Save</button>
+                <span id="nicknameAlert" class="alertMessage"></span>
             </div>
         </form>
     </div>
@@ -32,10 +33,14 @@
         <form action="">
             <h2>Games</h2>
             <div>
-                <button class="backBtn" type="submit">Back</button>
+                <button id="game-guessImage" class="game-btn">Pokémon Image Guess</button>
+                <button id="game-puzzle" class="game-btn">Pokemon Puzzle</button>
+                <button id="game-guessName" class="game-btn">Pokémon Name Challenge</button>
+                <button class="backBtn" type="button">Back</button>
             </div>
         </form>
     </div>
-    <script src="js/saveName.js" charset="utf-8"></script>
+    <script src="js/main.js" charset="utf-8"></script>
 </div>
 </body>
+</html>

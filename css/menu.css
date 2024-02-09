@@ -16,9 +16,39 @@ h2 {
     color: #f0f8ff;
     text-align: center;
 }
-
+button  {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    color: rgb(40, 40, 40);
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    color: #f0f8ff;
+    background: #c32b2bdd;
+    box-shadow: 0 0 10px #c32b2bdd;
+}
+    
 .backBtn {
     margin-top: 40px;
+}
+
+.game-btn {
+    width: auto;
+    margin-top: 30px;
+    padding: 10px 15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    white-space: nowrap;
+    
+    transition: background-color 0.5s ease;
+}
+.game-btn:hover {
+    background-color: #7a1919;
 }
 
 .wrapper {
@@ -31,9 +61,11 @@ h2 {
     box-shadow: 0 0 50px #c32b2bdd;
     overflow: hidden;
 }
+
 /* .wrapper:hover {
     animation: animate 1s linear infinite;
 } */
+
 .form-wrapper {
     display: flex;
     justify-content: center;
@@ -42,17 +74,21 @@ h2 {
     height: 100%;
     transition: 1s ease-in-out;
 }
+
 .wrapper.active .form-wrapper.sign-in {
     transform: translateY(-450px);
 }
+
 .wrapper .form-wrapper.sign-up {
     position: absolute;
     top: 450px;
     left: 0;
 }
+
 .wrapper.active .form-wrapper.sign-up {
     transform: translateY(-450px);
 }
+
 /* @keyframes animate {
     100% {
         filter: hue-rotate(360deg);
@@ -64,6 +100,7 @@ h2 {
     margin: 45px 0 20px;
     border-bottom: 2px solid #fff;
 }
+
 .input-group label {
     position: absolute;
     top: 50%;
@@ -74,6 +111,7 @@ h2 {
     pointer-events: none;
     transition: .3s;
 }
+
 .input-group input {
     width: 320px;
     height: 40px;
@@ -84,6 +122,7 @@ h2 {
     border: none;
     outline: none;
 }
+
 .input-group input:focus~label,
 .input-group input:valid~label {
     top: -5px;
@@ -92,10 +131,12 @@ h2 {
 .remember {
     margin: -5px 0 40px 5px;
 }
+
 .remember label {
     color: #f0f8ff;
     font-size: 14px;
 }
+
 .remember label input[type="checkbox"] {
     width: 15px;
     height: 15px;
@@ -105,20 +146,12 @@ h2 {
     accent-color: #c32b2bdd;
 }
 
-button  {
-    position: relative;
-    width: 100%;
-    height: 40px;
-    background: #c32b2bdd;
-    box-shadow: 0 0 10px #c32b2bdd;
-    font-size: 16px;
-    color: rgb(40, 40, 40);
-    font-weight: 500;
-    cursor: pointer;
-    border-radius: 30px;
-    border: none;
-    outline: none;
-    color: #f0f8ff;
+.alertMessage {
+    display: flex;
+    color: #fff;
+    justify-content: center;
+    margin-top: 2%;
+    font-size: 12px;
 }
 
 .signUp-link {
@@ -126,18 +159,18 @@ button  {
     text-align: center;
     margin: 10px 0;
 }
+
 .signUp-link p {
     color: #f0f8ff;
 }
+
 .signUp-link p a {
     color: #c32b2bdd;
     text-decoration: none;
     font-weight: 500;
     margin-left: 5px;
 }
+
 .signUp-link p a:hover {
     text-decoration: underline;
 }
-
-
-
