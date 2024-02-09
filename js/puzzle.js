@@ -11,7 +11,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const countCards = 10;
+    let timerInterval;
 
+    const startButton = document.getElementById("start-btn");
+    const restartButton = document.getElementById("restart-btn");
+    const overlay = document.querySelector(".overlay");
+    const hideOverlayAndStartGame = () => {
+        overlay.style.display = "none";
+        startTimer(3);
+    };
+    startButton.addEventListener("click", hideOverlayAndStartGame);
+    
     let originalCards = generateRandomIds(countCards, 1, 1010).map(id => ({ id }));
     let doubledCards = [...originalCards, ...originalCards];
     doubledCards.sort(() => 0.5 - Math.random());
@@ -35,36 +45,42 @@ document.addEventListener("DOMContentLoaded", () => {
         img.src = imageUrl;
         preloadedImages.push(img);
     });
-
-
+   
     const startTimer = (durationInMinutes) => {
         const startTime = Date.now();
         const updateTimer = () => {
             const currentTime = Date.now();
             const elapsedTimeInSeconds = Math.floor((currentTime - startTime) / 1000);
-            const minutes = Math.floor(elapsedTimeInSeconds / 60);
-            const seconds = elapsedTimeInSeconds % 60;
-            const minutesDisplay = String(minutes).padStart(2, '0');
-            const secondsDisplay = String(seconds).padStart(2, '0');
-            timerElement.textContent = `${minutesDisplay}:${secondsDisplay}`;
-            requestAnimationFrame(updateTimer);
+    
+            if (overlay.style.display === 'none') {
+                const minutes = Math.floor(elapsedTimeInSeconds / 60);
+                const seconds = elapsedTimeInSeconds % 60;
+                const minutesDisplay = String(minutes).padStart(2, '0');
+                const secondsDisplay = String(seconds).padStart(2, '0');
+                timerElement.textContent = `${minutesDisplay}:${secondsDisplay}`;
+            } else {
+                clearInterval(timerInterval);
+            }
         };
         updateTimer();
+        timerInterval = setInterval(updateTimer, 1000);
     };
 
     const createBoard = async (cards) => {
         const numCards = cards.length;
         let maxWidth, initialImageSize;
-        startTimer(3);
         if (countCards <= 10) {
-            maxWidth = 610;
-            initialImageSize = 110;
-        } else if (countCards <= 20 && countCards < 40) {
-            maxWidth = 650;
+            maxWidth = 605;
+            initialImageSize = 105;
+        } else if (countCards > 10 && countCards <= 20) {
+            maxWidth = 965;
+            initialImageSize = 100;
+        } else if (countCards > 20 && countCards <= 40) {
+            maxWidth = 1692;
             initialImageSize = 85;
         } else {
-            maxWidth = 1030;
-            initialImageSize = 75;
+            maxWidth = 1200;
+            initialImageSize = 62;
         }
         const board = document.querySelector('.board');
         board.innerHTML = '';
@@ -80,7 +96,15 @@ document.addEventListener("DOMContentLoaded", () => {
         board.style.maxWidth = `${maxWidth}px`;
     };
 
+    const showGameOverPanel = () => {
+        const gameOverPanel = document.querySelector('.game-over-mode');
+        const congratulationsMessage = document.getElementById('congratulations-message');
+        congratulationsMessage.textContent = `Congratulations! You found all the pairs in ${timerElement.textContent}!`;
+        gameOverPanel.style.display = 'flex';
+    };
     const resetGame = async function () {
+        clearInterval(timerInterval); // Limpa o intervalo do cronômetro
+        timerElement.textContent = '00:00';
         board.innerHTML = '';
         cardsChosen = [];
         cardsChosenId = [];
@@ -96,12 +120,18 @@ document.addEventListener("DOMContentLoaded", () => {
             img.src = imageUrl;
             preloadedImages.push(img);
         });
+        startTimer(3);
         await createBoard(doubledCards);
         await new Promise(resolve => setTimeout(resolve, 3000));
     }
+    restartButton.addEventListener("click", () => {
+        resetGame();
+        const gameOverPanel = document.querySelector('.game-over-mode');
+        gameOverPanel.style.display = 'none';
+    });
 
     const flipCard = async function () {
-        if (cardsChosen.length < 2 && !this.classList.contains('pokemon')) {
+        if (cardsChosen.length < 2 && !this.classList.contains('pokemon') && !cardsWon.includes(cardsChosen[0])) {
             let cardId = this.getAttribute('data-id');
             if (this.getAttribute('src') === 'assets/img/checkImg.png') {
                 return;
@@ -140,15 +170,12 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             board.style.pointerEvents = 'auto';
         }, 0.2);
-        
+    
         if (cardsWon.length === doubledCards.length / 2) {
-            const elapsedTimeFormatted = timerElement.textContent;
-            alert(`Parabéns! Você encontrou todos os pares em ${elapsedTimeFormatted}!`);
-            setTimeout(() => {
-                resetGame();
-            }, 0.3);
+            showGameOverPanel();
+            clearInterval(timerInterval);
         }
-    }
+    };
 
     createBoard(doubledCards);
 });

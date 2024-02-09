@@ -5,30 +5,88 @@ body {
     height: 100vh;
     margin: 0;
     flex-direction: column;
-    
     touch-action: none;
-    -webkit-user-drag: none; 
+    -webkit-user-drag: none;
     user-select: none;
+}
+
+.overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2;
+    color: white;
+}
+.overlay.initial-mode {
+    display: flex;
+}
+.overlay.game-over-mode {
+    display: none;
+}
+ 
+.game-over-panel {
+    text-align: center;
+    padding: 20px;
+    height: 150px;
+    background-color: transparent;
+    border-radius: 10px;
+}
+.game-over-panel p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+  
+.buttons {
+    color: #f0ffff;
+    font-size: 18px;
+    width: 150px;
+    height: 50px;
+    margin-bottom: 115%;
+    border-radius: 15px;
+    background-color: #c32b2bdd;
+    box-shadow: 0 0 50px #c32b2bdd;
+    border: 20px;
+    border-color: #f0ffff;
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: transform 0.3s, opacity 0.5s;
+}
+.buttons:hover {
+    transform: translateY(-5px);
+}
+.buttons:active {
+    opacity: 0;
 }
 
 #title {
     display: inline-block;
-    margin-top: 3%;
+    margin-top: 4%;
     color: #f0ffff;
     font-family: "Titan One", sans-serif;
     font-weight: 400;
     font-style: normal;
     align-items: center;
+    z-index: 999;
 }
+
 #timer {
-    display: inline-block;
+    position: fixed;
+    top: 0;
+    right: 0;
     margin-top: 1%;
+    margin-right: 5%;
     color: #f0ffff;
     font-size: 1.5em;
     font-family: "Crete Round", serif;
     font-weight: 400;
     font-style: normal;
-    align-items: center;
+    z-index: 999;
 }
 
 .board {
@@ -37,15 +95,14 @@ body {
     max-width: 610px;
     align-items: center;
     justify-content: center;
-    margin-top: 2.3%;
+    margin-top: 2%;
 }
-
 .board img {
     width: 110px;
     height: 110px;
     margin: 10px;
     touch-action: none;
-    -webkit-user-drag: none; 
+    -webkit-user-drag: none;
     user-select: none;
     transition: opacity 0.35s, transform 0.35s, scale 0.35s;
 }
@@ -54,14 +111,14 @@ body {
 }
 .board img.pokemon {
     touch-action: none;
-    -webkit-user-drag: none; 
+    -webkit-user-drag: none;
     user-select: none;
     cursor: not-allowed;
     opacity: 1 !important;
     transform: scale(1) !important;
     transition: none;
 }
-.board:hover > :not(:hover):not(.clicked){
+.board:hover>:not(:hover):not(.clicked) {
     opacity: .4;
     transform: scale(0.98);
 }
