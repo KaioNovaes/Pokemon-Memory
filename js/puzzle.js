@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
         gameOverPanel.style.display = 'flex';
     };
     const resetGame = async function () {
-        clearInterval(timerInterval); // Limpa o intervalo do cronômetro
+        clearInterval(timerInterval);
         timerElement.textContent = '00:00';
         board.innerHTML = '';
         cardsChosen = [];

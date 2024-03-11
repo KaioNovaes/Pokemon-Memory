@@ -75,13 +75,43 @@ body {
     z-index: 999;
 }
 
-#timer {
+.custom-timer {
     position: fixed;
     top: 0;
     right: 0;
+    display: flex;
+    justify-content: space-between;
     margin-top: 1%;
-    margin-right: 5%;
+    margin-right: 2%;
+    z-index: 999;
+}
+
+#settings-btn {
     color: #f0ffff;
+    font-size: 13px;
+    height: 50px;
+    border-radius: 20px;
+    background-color: #c32b2bdd;
+    box-shadow: 0 0 50px #c32b2bdd;
+    border: 20px;
+    border-color: #f0ffff;
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: transform 0.3s, opacity 0.5s;
+}
+
+#settings-btn:hover {
+    transform: translateY(-5px);
+}
+
+#settings-btn:active {
+    opacity: 0;
+}
+
+#timer {
+    color: #f0ffff;
+    margin-top: 3.5%;
+    margin-right: 15%;
     font-size: 1.5em;
     font-family: "Crete Round", serif;
     font-weight: 400;
